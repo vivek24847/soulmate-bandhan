@@ -1,0 +1,17 @@
+{
+  "name": "soulmate-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Soulmate Bandhan",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}
