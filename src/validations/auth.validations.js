@@ -13,7 +13,7 @@ const registerationSchema = z.object({
     .min(8, "Password must be at least 8 characters")
     .max(128, "Password cannot exceed 128 characters"),
 
-  phone: z.string().trim(),
+  phone: z.string().trim().min(10, "Phone number should be valid"),
 });
 
 const loginSchema = z.object({
@@ -26,4 +26,20 @@ const loginSchema = z.object({
   password: z.string().trim().min(1, "Password is required"),
 });
 
-export { registerationSchema, loginSchema };
+const loginByPhoneSchema = z.object({
+  phone: z
+        .string()
+        .min(10, "Phone number should be valid")
+})
+
+const verifyOtpSchema = z.object({
+  phone:z 
+        .string()
+        .min(10, "Phone number should be valid"),
+  otp: z  
+       .string()
+       .length(6, "OTP should be of 6 digits")
+       .regex(/^\d{6}$/, "OTP should contain only digits")
+})
+
+export { registerationSchema, loginSchema , loginByPhoneSchema , verifyOtpSchema};

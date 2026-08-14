@@ -19,7 +19,7 @@ const generateAccessToken = async (userId) => {
       alg: "HS256",
     })
     .setIssuedAt()
-    .setExpirationTime("15m")
+    .setExpirationTime("1d")
     .sign(secret);
 };
 

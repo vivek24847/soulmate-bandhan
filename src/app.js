@@ -1,5 +1,6 @@
 import express from "express"
 import { authRoute } from "./routes/auth.routes.js";
+import { profileRoute } from "./routes/profile.routes.js";
 
 const app = express()
 
@@ -19,5 +20,6 @@ app.use("/api/auth", (req, res, next) => {
 });
 
 app.use("/api/auth" , authRoute )
+app.use("/api/profile" , profileRoute )
 
 export default app

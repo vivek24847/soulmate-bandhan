@@ -1,4 +1,4 @@
-import { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 const profileSchema = new mongoose.Schema({
     user: {
@@ -6,12 +6,6 @@ const profileSchema = new mongoose.Schema({
       ref: "User",
       required: true,
       unique: true,
-    },
-
-    name: {
-      type: String,
-      required: true,
-      trim: true,
     },
 
     gender: {
@@ -28,16 +22,14 @@ const profileSchema = new mongoose.Schema({
     religion: {
       type: String,
       trim: true,
+      required:true
     },
 
     caste: {
       type: String,
       trim: true,
-    },
+      required:true
 
-    motherTongue: {
-      type: String,
-      trim: true,
     },
 
     location: {
@@ -47,10 +39,16 @@ const profileSchema = new mongoose.Schema({
     },
 
     education: {
-      qualification: String,
-      field: String,
-      college: String,
+      type:String,
+      trim: true,
     },
+
+    interests:[
+      {
+        type:String,
+        trim:true
+      }
+    ],
 
     photos: [
     {
@@ -67,8 +65,8 @@ const profileSchema = new mongoose.Schema({
   ],
 
     occupation: {
-      title: String,
-      company: String,
+     type: String,
+     trim: true,
     },
 
     about: {
