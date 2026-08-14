@@ -4,4 +4,8 @@ const hashPassword = async (password) => {
   return await argon2.hash(password);
 };
 
-export { hashPassword };
+const isPasswordCorrect = async (hashedPassword, password) => {
+  return await argon2.verify(hashedPassword, password);
+};
+
+export { hashPassword , isPasswordCorrect };

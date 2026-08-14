@@ -1,7 +1,11 @@
 import User from "../models/user.model.js";
-import { hashPassword } from "../utils/password.js";
+import { hashPassword, isPasswordCorrect } from "../utils/password.js";
 import { handleError, handleSuccess } from "../utils/responseHandler.js";
-import { registerationSchema } from "../validations/auth.validations.js";
+import { generateAccessToken } from "../utils/tokens.js";
+import {
+  loginSchema,
+  registerationSchema,
+} from "../validations/auth.validations.js";
 
 const register = async (req, res) => {
   try {
@@ -43,4 +47,46 @@ const register = async (req, res) => {
   }
 };
 
-export { register };
+const login = async (req, res) => {
+  try {
+    const result = loginSchema.safeParse(req.body);
+
+    if (!result.success) {
+      return handleError(res, result.error.flatten().fieldErrors, 400);
+    }
+
+    const data = result.data;
+    const user = await User.findOne({
+      email: data.email,
+    });
+
+    if (!user) {
+      return handleError(res, "Invalid email or password", 400);
+    }
+
+    const samePassword = await isPasswordCorrect(user.password, data.password);
+
+    console.log("whatUser", samePassword);
+
+    if (!samePassword) {
+      return handleError(res, "Invalid email or password", 400);
+    }
+
+    const accessToken = await generateAccessToken(user._id);
+
+    const userResponse = user.toObject();
+
+    delete userResponse.password;
+
+    return handleSuccess(
+      res,
+      "User logged in successfully",
+      { user: userResponse, accessToken },
+      200,
+    );
+  } catch (error) {
+    return handleError(res, error, 500);
+  }
+};
+
+export { register, login };
