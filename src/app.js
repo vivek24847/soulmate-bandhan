@@ -1,6 +1,7 @@
 import express from "express"
 import { authRoute } from "./routes/auth.routes.js";
 import { profileRoute } from "./routes/profile.routes.js";
+import { discoverRoute } from "./routes/discover.route.js";
 
 const app = express()
 
@@ -21,5 +22,6 @@ app.use("/api/auth", (req, res, next) => {
 
 app.use("/api/auth" , authRoute )
 app.use("/api/profile" , profileRoute )
+app.use("/api/discover" ,  discoverRoute)
 
 export default app
