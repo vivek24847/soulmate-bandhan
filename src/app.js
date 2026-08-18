@@ -8,7 +8,7 @@ import { connectionRouter } from "./routes/connection.routes.js";
 const app = express()
 
 app.use(cors({
-    origin: ["https://soulmate-bandhan-web.vercel.app", "http://localhost:5173"]
+    origin: ["https://soulmate-bandhan-web.vercel.app", "http://localhost:3000"]
 }));
 app.use(express.json());
 
