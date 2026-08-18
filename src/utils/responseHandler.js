@@ -10,7 +10,7 @@ return res.status(statusCode).json({
 
 
 
-const handleError =( res , message="Something wwnt wrong" , data , statusCode=500) => {
+const handleError =( res , message="Something wwnt wrong" , statusCode=500) => {
    return res.status(statusCode).json({
     success: false,
     message,
