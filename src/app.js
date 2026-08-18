@@ -1,4 +1,5 @@
 import express from "express"
+import cors from "cors";
 import { authRoute } from "./routes/auth.routes.js";
 import { profileRoute } from "./routes/profile.routes.js";
 import { discoverRoute } from "./routes/discover.route.js";
@@ -6,6 +7,9 @@ import { connectionRouter } from "./routes/connection.routes.js";
 
 const app = express()
 
+app.use(cors({
+    origin: ["https://soulmate-bandhan-web.vercel.app", "http://localhost:5173"]
+}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
