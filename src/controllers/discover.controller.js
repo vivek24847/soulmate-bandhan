@@ -39,7 +39,6 @@ const discoverPeople = async (req, res) => {
       (profile) => profile.user?.profileCompleted
     );
 
-    console.log("profiles", filteredProfiles);
 
     return handleSuccess(
       res,

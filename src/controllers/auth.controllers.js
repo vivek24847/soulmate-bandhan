@@ -62,7 +62,7 @@ const login = async (req, res) => {
     const data = result.data;
     const user = await User.findOne({
       email: data.email,
-    });
+    }).select("+password")
 
     if (!user) {
       return handleError(res, "Invalid email or password", 400);
